@@ -1,0 +1,21 @@
+{
+	"name": "Python 3",
+	"image": "mcr.microsoft.com/devcontainers/python:0-3.11",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.pythonPath": "/workspace/venv/bin/python",
+				"python.terminal.activateEnvironment": true
+			},
+			"extensions": [
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+	
+	"postCreateCommand": [
+		"python3 -m venv /workspace/venv",
+		"/workspace/venv/bin/pip install --upgrade pip",
+		"/workspace/venv/bin/pip install -r requirements.txt"
+	]
+}
