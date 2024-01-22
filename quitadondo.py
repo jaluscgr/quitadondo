@@ -1,15 +1,18 @@
 from PIL import Image, ImageSequence
-from rembg import remove
+from rembg import remove, new_session
 from io import BytesIO
 
 def process_frame(frame):
+    # Crear una nueva sesión con el modelo especificado
+    session = new_session(model_name='isnet-anime')
+
     # Convertir el cuadro a formato que pueda ser procesado por rembg
     with BytesIO() as output:
         frame.save(output, format="PNG")
         input_data = output.getvalue()
 
-    # Eliminar fondo usando el modelo especificado para anime
-    output_data = remove(input_data, model_name='isnet-anime')
+    # Eliminar fondo usando la sesión creada
+    output_data = remove(input_data, session=session)
 
     # Cargar la imagen procesada
     processed_frame = Image.open(BytesIO(output_data))
@@ -29,7 +32,7 @@ def process_gif(input_path, output_path):
     print(f"GIF procesado y guardado como '{output_path}'")
 
 # Ruta del archivo GIF original y del nuevo GIF
-input_gif = "assets/personajes/ChicaPlanta.gif"
+input_gif = "ChicaPlanta.gif"
 output_gif = "chica_planta_sin_fondo.gif"
 
 process_gif(input_gif, output_gif)
