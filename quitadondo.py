@@ -1,38 +1,51 @@
 from PIL import Image, ImageSequence
 from rembg import remove, new_session
 from io import BytesIO
+import os
 
-def process_frame(frame):
-    # Crear una nueva sesión con el modelo especificado
+def separate_gif_frames(input_gif, output_folder):
+    gif = Image.open(input_gif)
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    for i, frame in enumerate(ImageSequence.Iterator(gif)):
+        frame.save(f"{output_folder}/frame_{i:03d}.png")
+
+def process_frame(input_image_path, output_image_path):
     session = new_session(model_name='isnet-anime')
-
-    # Convertir el cuadro a formato que pueda ser procesado por rembg
-    with BytesIO() as output:
-        frame.save(output, format="PNG")
-        input_data = output.getvalue()
-
-    # Eliminar fondo usando la sesión creada
+    with open(input_image_path, "rb") as file:
+        input_data = file.read()
     output_data = remove(input_data, session=session)
+    with open(output_image_path, "wb") as file:
+        file.write(output_data)
 
-    # Cargar la imagen procesada
-    processed_frame = Image.open(BytesIO(output_data))
-    return processed_frame
-
-def process_gif(input_path, output_path):
-    gif = Image.open(input_path)
+def create_processed_gif(input_folder, output_gif, duration):
     frames = []
+    file_names = sorted(os.listdir(input_folder))
+    for file_name in file_names:
+        if file_name.endswith('.png'):
+            frame = Image.open(os.path.join(input_folder, file_name))
+            frames.append(frame)
+    frames[0].save(output_gif, save_all=True, append_images=frames[1:], loop=0, duration=duration)
+    print(f"GIF procesado y guardado como '{output_gif}'")
 
-    # Procesar cada cuadro del GIF
-    for frame in ImageSequence.Iterator(gif):
-        processed_frame = process_frame(frame)
-        frames.append(processed_frame)
+# Rutas
+input_gif = "Heria.gif"
+separated_frames_folder = "gifsuelta"
+processed_frames_folder = "gifsinfondo"
 
-    # Guardar los cuadros procesados como un nuevo GIF
-    frames[0].save(output_path, save_all=True, append_images=frames[1:], loop=0, duration=gif.info['duration'])
-    print(f"GIF procesado y guardado como '{output_path}'")
+# 1. Separar GIF en cuadros individuales
+separate_gif_frames(input_gif, separated_frames_folder)
 
-# Ruta del archivo GIF original y del nuevo GIF
-input_gif = "ChicaPlanta.gif"
-output_gif = "chica_planta_sin_fondo.gif"
+# 2. Procesar cada cuadro
+if not os.path.exists(processed_frames_folder):
+    os.makedirs(processed_frames_folder)
+for file_name in sorted(os.listdir(separated_frames_folder)):
+    if file_name.endswith('.png'):
+        input_path = os.path.join(separated_frames_folder, file_name)
+        output_path = os.path.join(processed_frames_folder, file_name)
+        process_frame(input_path, output_path)
 
-process_gif(input_gif, output_gif)
+# 3. Crear el GIF procesado
+output_gif = "resultado_sin_fondo.gif"
+gif = Image.open(input_gif)
+create_processed_gif(processed_frames_folder, output_gif, gif.info['duration'])
