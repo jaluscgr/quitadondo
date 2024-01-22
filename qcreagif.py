@@ -1,6 +1,8 @@
 from PIL import Image
 import os
 
+
+
 # Ruta de la carpeta que contiene las imágenes PNG
 input_folder = 'gifsinfondo'
 
