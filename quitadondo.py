@@ -10,13 +10,24 @@ def separate_gif_frames(input_gif, output_folder):
     for i, frame in enumerate(ImageSequence.Iterator(gif)):
         frame.save(f"{output_folder}/frame_{i:03d}.png")
 
+def force_full_transparency(image):
+    """Convertir cualquier píxel semi-transparente en completamente transparente."""
+    alpha = image.split()[-1]  # Obtener el canal alfa
+    alpha = alpha.point(lambda p: p > 128 and 255)  # Convertir semi-transparencia en transparencia completa
+    image.putalpha(alpha)
+    return image
+
 def process_frame(input_image_path, output_image_path):
     session = new_session(model_name='isnet-anime')
     with open(input_image_path, "rb") as file:
         input_data = file.read()
     output_data = remove(input_data, session=session)
-    with open(output_image_path, "wb") as file:
-        file.write(output_data)
+    image = Image.open(BytesIO(output_data))
+
+    # Forzar la transparencia completa
+    image = force_full_transparency(image)
+
+    image.save(output_image_path, format='PNG')
 
 def create_processed_gif(input_folder, output_gif, duration):
     frames = []
