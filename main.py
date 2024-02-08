@@ -43,4 +43,4 @@ def main(page):
     print("Default platform:", page.platform)
 
 
-ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+ft.app(target=main)
