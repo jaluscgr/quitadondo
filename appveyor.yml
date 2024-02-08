@@ -125,11 +125,12 @@ for:
       - rm -rf .vscode
       - ls ./
       # update build version
-      - pip3 install flet
-      - pip3 install p4a-build
-      - pip3 install --upgrade cython
-      - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
+      - python3 -m pip install --upgrade pip
+      - export PATH=$PATH:/home/appveyor/.local/bin
+      - pip3 install flet
+      - pip3 install --upgrade p4a
+      - pip3 install --upgrade cython
 
       # install NDK
       - export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
