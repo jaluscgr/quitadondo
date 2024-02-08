@@ -134,10 +134,10 @@ for:
       - echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
       #install temurin version
       - sudo apt update
-      - echo "y" | sudo apt install java-18-openjdk
+      - echo "y" | sudo apt install temurin-17-jdk
       - sudo update-alternatives --config java
       - echo "sudo update-alternatives --config java" && echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-jdk-amd64
+      - export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
 
 
 
