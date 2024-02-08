@@ -135,7 +135,8 @@ for:
       #install temurin version
       - sudo apt update
       - echo "y" | sudo apt install temurin-18-jdk
-      - echo "sudo update-alternatives --config java" #&& echo "3"
+      - sudo update-alternatives --config java
+      #- echo "sudo update-alternatives --config java" && echo "3"
       - export JAVA_HOME=/usr/lib/jvm/temurin-18-jdk-amd64
 
 
