@@ -118,8 +118,10 @@ for:
 
     install:
       #borrar devcontainer y appveyor por si esas son las causas del problema
-      - ps: Remove-Item -Path ".\.devcontainer" -Recurse -Force
-      - ps: Remove-Item -Path ".\appveyor.yml" -Force
+      - ls ./
+      - rm -rf .devcontainer
+      - rm -f appveyor.yml
+      - ls ./
       # update build version
       - pip3 install flet
       - pip3 install p4a-build
