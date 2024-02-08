@@ -129,15 +129,15 @@ for:
       
 
       #Add the eclipse adoptium gpg key
-      #- wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
+      - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
       #add the eclipse adoptium apt repository
-      #- echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+      - echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
       #install temurin version
-      #- sudo apt update
-      #- echo "y" | sudo apt install temurin-8-jdk
+      - sudo apt update
+      - echo "y" | sudo apt install java-18-openjdk
       - sudo update-alternatives --config java
-      - echo "sudo update-alternatives --config java" && echo "0"
-      - export JAVA_HOME=/usr/lib/jvm/temurin-18-jdk-amd64
+      - echo "sudo update-alternatives --config java" && echo "3"
+      - export JAVA_HOME=/usr/lib/jvm/java-18-openjdk-jdk-amd64
 
 
 
