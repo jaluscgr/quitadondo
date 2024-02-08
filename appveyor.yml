@@ -135,7 +135,9 @@ for:
       #install temurin version
       - sudo apt update
       - echo "y" | sudo apt install temurin-8-jdk
-      - echo "sudo update-alternatives --config java" #&& echo "3"
+      - echo "sudo update-alternatives --config java" && echo "3"
+      - export JAVA_HOME=/usr/lib/jvm/temurin-8-jdk-amd64
+
 
 
       - pip3 install flet
@@ -149,7 +151,7 @@ for:
 
       #add path to sdkmanager to PATH
       - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
-
+      
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
 
