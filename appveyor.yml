@@ -121,6 +121,8 @@ for:
       - ls ./
       - rm -rf .devcontainer
       - rm -f appveyor.yml
+      - rm -rf .git
+      - rm -rf .vscode
       - ls ./
       # update build version
       - pip3 install flet
