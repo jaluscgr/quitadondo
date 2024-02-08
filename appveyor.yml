@@ -134,7 +134,7 @@ for:
       #install temurin version
       - sudo apt update
       - echo "y" | sudo apt install temurin-8-jdk
-      - sudo update-alternatives --config java
+      - echo "sudo update-alternatives --config java" && echo "3"
 
 
       - pip3 install flet
