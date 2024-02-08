@@ -125,6 +125,7 @@ for:
       - rm -rf .vscode
       - ls ./
       # update build version
+      - p4a --help
       - pip3 install flet
       #- pip3 install p4a-build
       - pip3 install --upgrade cython
