@@ -27,7 +27,7 @@ def main(page):
         print("New platform:", page.platform)
 
     add_icon = AdaptiveIconButton(
-        ios_icon=ft.cupertino_icons.AIRPLANE, android_icon=ft.icons.ADD
+        ios_icon=ft.icons.ABC, android_icon=ft.icons.ADD
     )
     page.add(add_icon)
     page.adaptive = True
@@ -43,4 +43,4 @@ def main(page):
     print("Default platform:", page.platform)
 
 
-ft.app(target=main)
+ft.app(target=main, view=ft.AppView.WEB_BROWSER)
