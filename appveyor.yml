@@ -128,6 +128,7 @@ for:
       - pip3 install flet
       - pip3 install p4a-build
       - pip3 install --upgrade cython
+      - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
 
       # install NDK
@@ -264,6 +265,7 @@ for:
 
     install:
       - pip3 install flet
+      - export PATH=$PATH:~/.local/bin
       #- pip3 install flet-route
       #- pip3 install openpyxl
       #- export PATH=$PATH:$(python3 -m site --user-base)/bin
