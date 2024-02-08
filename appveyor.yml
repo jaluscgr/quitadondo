@@ -126,6 +126,7 @@ for:
       - ls ./
       - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
+      
 
       #Add the eclipse adoptium gpg key
       - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
@@ -145,6 +146,10 @@ for:
       - export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
+
+      #add path to sdkmanager to PATH
+      - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
+      
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
 
