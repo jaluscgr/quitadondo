@@ -1,5 +1,5 @@
 #posibles evitar
-.devcontainer/
+#.devcontainer/
 #appveyor.yml
 
 # Byte-compiled / optimized / DLL files

@@ -117,6 +117,9 @@ for:
         - job_name: Build app for Android
 
     install:
+      #borrar devcontainer y appveyor por si esas son las causas del problema
+      - ps: Remove-Item -Path ".\.devcontainer" -Recurse -Force
+      - ps: Remove-Item -Path ".\appveyor.yml" -Force
       # update build version
       - pip3 install flet
       - pip3 install p4a-build
