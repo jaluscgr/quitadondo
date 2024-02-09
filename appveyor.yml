@@ -167,7 +167,7 @@ for:
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
       - p4a --help
-      - echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir "/usr/lib/android-sdk" --ndk-dir "/usr/lib/android-sdk/ndk" --dist-name serious_python
+      - echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir "/usr/lib/android-sdk" --ndk-dir "/usr/lib/android-sdk/ndk/25.2.9519653" --dist-name serious_python
 
       #- echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
