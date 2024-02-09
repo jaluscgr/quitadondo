@@ -148,7 +148,7 @@ for:
       #- # Cambia la configuración de Java
       - sudo update-alternatives --config java
       - echo "3"
-      - export JAVA_HOME=/usr/lib/jdk-18.0.2.1+1
+      - export JAVA_HOME=/usr/lib/jvm/jdk-18.0.2.1+1
 
       - pip3 install flet
       #- pip3 install p4a-build
