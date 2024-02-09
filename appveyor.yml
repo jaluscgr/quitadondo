@@ -133,8 +133,8 @@ for:
       #- brew install cmake
 
       # ver la ubicacion de java temurin
-      #- /usr/libexec/java_home -v 1.8
-      - echo $JAVA_HOME
+      - /usr/libexec/java_home -v 1.8
+      #- echo $JAVA_HOME
 
       -
 
