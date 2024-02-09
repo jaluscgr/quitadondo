@@ -129,15 +129,20 @@ for:
       
 
       #Add the eclipse adoptium gpg key
-      - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
+      #- wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
       #add the eclipse adoptium apt repository
-      - echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+      #- echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
       #install temurin version
-      - sudo apt update
-      - echo "y" | sudo apt install temurin-17-jdk
+      #- sudo apt update
+      #- echo "y" | sudo apt install temurin-17-jdk
+      - wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
+      - tar -xvzf openjdk-18.0.2_linux-x64_bin.tar.gz
+      - sudo mv jdk-18.0.2 /usr/lib/jvm/
+
+
       - sudo update-alternatives --config java
       - echo "sudo update-alternatives --config java" && echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
+      - export JAVA_HOME=/usr/lib/jvm/jdk-18.0.2
 
 
 
