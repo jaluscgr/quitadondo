@@ -135,15 +135,16 @@ for:
       #install temurin version
       - sudo apt update
       - echo "y" | sudo apt install temurin-8-jdk
-      #- wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
-      #- tar -xvzf openjdk-18.0.2_linux-x64_bin.tar.gz
-      #- sudo mv jdk-18.0.2 /usr/lib/jvm/
-      #- sudo update-alternatives --install /usr/lib/jvm/java java /usr/lib/jvm/jdk-18.0.2 1
 
       - sudo update-alternatives --config java
       - echo "sudo update-alternatives --config java" && echo "3"
       - export JAVA_HOME=/usr/lib/jvm/temurin-8-jdk-amd64
 
+      #cambiar luego a java 18 para que p4a funcione
+      - wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
+      - tar -xvzf openjdk-18.0.2_linux-x64_bin.tar.gz
+      - sudo mv jdk-18.0.2 /usr/lib/jvm/
+      - sudo update-alternatives --install /usr/lib/jvm/java java /usr/lib/jvm/jdk-18.0.2 1
 
 
       - pip3 install flet
@@ -165,6 +166,11 @@ for:
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
       - p4a --help
+
+      - # Cambia la configuración de Java
+      - sudo update-alternatives --config java
+      - echo "4"
+
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
       - export SERIOUS_PYTHON_P4A_DIST="/home/appveyor/.local/share/python-for-android/dists/serious_python"
