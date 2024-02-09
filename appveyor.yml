@@ -146,13 +146,24 @@ for:
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
+        # Obtener la ruta donde se descomprimió el NDK
+      -  NDK_DIR=$(find / -type d -name "android-ndk-*" 2>/dev/null | head -n 1)
+        # Exportar la ruta como variable de entorno global
+      -  export ANDROID_NDK_HOME="$NDK_DIR"
+
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
+      # Obtener la ruta donde se descomprimió la plataforma
+      -PLATFORM_DIR=$(find / -type d -name "android-*" 2>/dev/null | head -n 1)
+      # Exportar la ruta como variable de entorno global
+      -export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
       # install Kivy for Android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
       - p4a --help
-      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
+      - echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir "$ANDROID_SDK_ROOT" --ndk-dir "$ANDROID_NDK_HOME" --dist-name serious_python
+
+      #- echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
       - export SERIOUS_PYTHON_P4A_DIST="/home/appveyor/.local/share/python-for-android/dists/serious_python"
        # Verificar que el directorio de distribución existe y listar su contenido
