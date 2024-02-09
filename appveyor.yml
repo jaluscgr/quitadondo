@@ -125,7 +125,7 @@ for:
       - export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
         # Añadir la clave GPG de Eclipse Adoptium
-      - curl -fsSL https://adoptium.net/archive.key | gpg --dearmor -o /usr/local/etc/apt/trusted.gpg.d/adoptium-archive-keyring.gpg
+      - curl -fsSL https://adoptium.net/archive.key | gpg --import
 
         # Añadir el repositorio apt de Eclipse Adoptium
       - echo "deb https://adoptium.net/archive/old/macos/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
