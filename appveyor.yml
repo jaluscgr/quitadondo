@@ -140,7 +140,8 @@ for:
       - jenv versions
       - jenv add $(/usr/libexec/java_home -v 1.8)
       - jenv versions
-      - jenv global 1.8
+      - jenv global temurin64-1.8.0.402
+
       - jenv which java
 
 
@@ -149,7 +150,7 @@ for:
       
 
 
-      - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+      - export JAVA_HOME=/Users/appveyor/.jenv/versions/temurin64-1.8.0.402
 
 
         # Instalar flet
