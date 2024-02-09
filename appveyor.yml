@@ -125,22 +125,13 @@ for:
       - export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
         # Añadir la clave GPG de Eclipse Adoptium
-      - curl -fsSL https://adoptium.net/archive.key | gpg --import
+      - brew tap homebrew/cask-versions
 
         # Añadir el repositorio apt de Eclipse Adoptium
-      - echo "deb https://adoptium.net/archive/old/macos/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
-
-        # Actualizar el índice de paquetes
-      - brew update
-
-        # Instalar autopoint (si aún no está instalado)
-      - brew install gettext
-
-        # Instalar Temurin JDK 8
       - brew install --cask temurin8
 
-        # Establecer Java 8 como la versión por defecto
-      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+      - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
+
 
         # Instalar flet
       - pip3 install flet
