@@ -126,7 +126,6 @@ for:
       - ls ./
       - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
-      
 
       #Add the eclipse adoptium gpg key
       - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
@@ -135,12 +134,8 @@ for:
       #install temurin version
       - sudo apt update
       - echo "y" | sudo apt install temurin-8-jdk
-
-      - sudo update-alternatives --config java
       - echo "sudo update-alternatives --config java" && echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/temurin-8-jdk-amd64
 
-      
 
       - pip3 install flet
       #- pip3 install p4a-build
@@ -150,10 +145,6 @@ for:
       - export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
-
-      #add path to sdkmanager to PATH
-      - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
-      
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
 
@@ -161,18 +152,6 @@ for:
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
       - p4a --help
-
-      #cambiar luego a java 18 para que p4a funcione
-      - wget https://github.com/adoptium/temurin18-binaries/releases/download/jdk-18.0.2.1%2B1/OpenJDK18U-jdk_x64_linux_hotspot_18.0.2.1_1.tar.gz
-      - tar -xvzf OpenJDK18U-jdk_x64_linux_hotspot_18.0.2.1_1.tar.gz
-      - sudo mv jdk-18.0.2.1+1 /usr/lib/jvm/
-      - sudo update-alternatives --install /usr/lib/jvm/java java /usr/lib/jvm/jdk-18.0.2.1+1 1
-      #- # Cambia la configuración de Java
-      - sudo update-alternatives --config java
-      - echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/jdk-18.0.2.1+1
-      
-
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
       - export SERIOUS_PYTHON_P4A_DIST="/home/appveyor/.local/share/python-for-android/dists/serious_python"
@@ -181,8 +160,8 @@ for:
       - ls -l $SERIOUS_PYTHON_P4A_DIST
 
     build_script:
-      #- flet build apk --template gh:flet-dev/flet-build-template -vv
-      - flet build apk -vv
+      - flet build apk --template gh:flet-dev/flet-build-template -vv
+      #- flet build apk -vv
 
     after_build:
       - echo "Verificando la existencia de archivos .apk en ./build/apk"
@@ -486,5 +465,3 @@ for:
     test_script:
       
 
-
-  
