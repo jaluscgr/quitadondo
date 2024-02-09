@@ -138,7 +138,7 @@ for:
       - wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
       - tar -xvzf openjdk-18.0.2_linux-x64_bin.tar.gz
       - sudo mv jdk-18.0.2 /usr/lib/jvm/
-
+      - sudo update-alternatives --install /usr/lib/jvm java /usr/lib/jvm/jdk-18.0.2
 
       - sudo update-alternatives --config java
       - echo "sudo update-alternatives --config java" && echo "3"
