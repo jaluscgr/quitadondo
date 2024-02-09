@@ -117,34 +117,23 @@ for:
         - job_name: Build app for Android
 
     install:
-      #borrar devcontainer y appveyor por si esas son las causas del problema
-      - ls ./
-      - rm -rf .devcontainer
-      - rm -f appveyor.yml
-      - rm -rf .git
-      - rm -rf .vscode
-      - ls ./
+
       - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
       
 
       #Add the eclipse adoptium gpg key
-      - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
+      #- wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
       #add the eclipse adoptium apt repository
-      - echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+      #- echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
       #install temurin version
-      - sudo apt update
-      - echo "y" | sudo apt install temurin-8-jdk
+      #- sudo apt update
+      #- echo "y" | sudo apt install temurin-8-jdk
 
       - sudo update-alternatives --config java
-      - echo "sudo update-alternatives --config java" && echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/temurin-8-jdk-amd64
+      #- echo "sudo update-alternatives --config java" && echo "3"
+      - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-      #cambiar luego a java 18 para que p4a funcione
-      - wget https://download.java.net/java/GA/jdk18.0.2/f6ad4b4450fd4d298113270ec84f30ee/9/GPL/openjdk-18.0.2_linux-x64_bin.tar.gz
-      - tar -xvzf openjdk-18.0.2_linux-x64_bin.tar.gz
-      - sudo mv jdk-18.0.2 /usr/lib/jvm/
-      - sudo update-alternatives --install /usr/lib/jvm/java java /usr/lib/jvm/jdk-18.0.2 1
 
 
       - pip3 install flet
@@ -166,11 +155,6 @@ for:
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
       - p4a --help
-
-      - # Cambia la configuración de Java
-      - sudo update-alternatives --config java
-      - echo "3"
-      - export JAVA_HOME=/usr/lib/jvm/jdk-18.0.2
 
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
