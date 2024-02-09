@@ -161,6 +161,7 @@ for:
       - # Exportar la ruta como variable de entorno global
       - #export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
+      - ls ./
       - ls usr/lib/android-sdk
       - ls usr/lib
 
