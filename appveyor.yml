@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for Android
       job_group: build_app_android
-      APPVEYOR_BUILD_WORKER_IMAGE: Ubuntu2004
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
 
     - job_name: Build app for web
       job_group: build_app_web
@@ -117,65 +117,58 @@ for:
         - job_name: Build app for Android
 
     install:
-      #borrar devcontainer y appveyor por si esas son las causas del problema
-      - ls ./
-      - rm -rf .devcontainer
-      - rm -f appveyor.yml
-      - rm -rf .git
-      - rm -rf .vscode
-      - #ls /usr/lib
-      - export PATH=$PATH:/home/appveyor/.local/bin
-      - export PATH=$PATH:$(python3 -m site --user-base)/bin
+      
+      - # Agregar directorio local bin al PATH
+      - export PATH="$PATH:$HOME/.local/bin"
 
-      #Add the eclipse adoptium gpg key
-      - wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo apt-key add -
-      #add the eclipse adoptium apt repository
-      - echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
-      #install temurin version
-      - sudo apt update
-      - sudo apt-get install autopoint
-      - echo "y" | sudo apt install temurin-8-jdk
-      - echo "sudo update-alternatives --config java" && echo "3"
+        # Agregar el directorio bin de python3 al PATH
+      - export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
+        # Añadir la clave GPG de Eclipse Adoptium
+      - curl -fsSL https://adoptium.net/archive.key | gpg --dearmor -o /usr/local/etc/apt/trusted.gpg.d/adoptium-archive-keyring.gpg
 
+        # Añadir el repositorio apt de Eclipse Adoptium
+      - echo "deb https://adoptium.net/archive/old/macos/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/adoptium.list
+
+        # Actualizar el índice de paquetes
+      - brew update
+
+        # Instalar autopoint (si aún no está instalado)
+      - brew install gettext
+
+        # Instalar Temurin JDK 8
+      - brew install --cask temurin8
+
+        # Establecer Java 8 como la versión por defecto
+      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+        # Instalar flet
       - pip3 install flet
-      #- pip3 install p4a-build
-      
 
-      # install NDK
-      - export ANDROID_SDK_ROOT="/usr/lib/android-sdk"
-      - export NDK_VERSION=25.2.9519653
-      - export SDK_VERSION=android-33
-      - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
-      - # Obtener la ruta donde se descomprimió el NDK
-      - #NDK_DIR=$(find / -type d -name "android-ndk-*" 2>/dev/null | head -n 1)
-      - # Exportar la ruta como variable de entorno global
-
-
-      
-
-
-      - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
-      - # Obtener la ruta donde se descomprimió la plataforma
-      - #PLATFORM_DIR=$(find / -type d -name "android-*" 2>/dev/null | head -n 1)
-      - # Exportar la ruta como variable de entorno global
-
-      - ls /usr/lib/android-sdk
-      - ls /usr/lib/android-sdk/platforms
-      - ls /usr/lib/android-sdk/ndk
-
-      # install Kivy for Android
+        # Instalar python-for-android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
+
+        # Actualizar Cython
       - pip3 install --upgrade cython
+
+        # Verificar la instalación de p4a
       - p4a --help
+
+        # Crear el entorno de distribución para Python en Android
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir "/usr/lib/android-sdk" --ndk-dir "/usr/lib/android-sdk/ndk/25.2.9519653" --dist-name mydist
 
-      #- echo "N" | p4a create --requirements python3,hostpython3,android,pandas --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
+        # Actualizar Flutter
       - flutter upgrade --force
-      - export SERIOUS_PYTHON_P4A_DIST="/home/appveyor/.local/share/python-for-android/dists/mydist"
-       # Verificar que el directorio de distribución existe y listar su contenido
+
+        # Establecer la variable de entorno SERIOUS_PYTHON_P4A_DIST
+      - export SERIOUS_PYTHON_P4A_DIST="$HOME/.local/share/python-for-android/dists/mydist"
+
+        # Verificar el directorio de distribución de Python para Android
       - echo "Verificando el directorio de distribución de Python para Android:"
       - ls -l $SERIOUS_PYTHON_P4A_DIST
+
+        # Ejecutar el script de construcción de apk
+      - flet build apk -vv
 
     build_script:
       #- flet build apk --template gh:flet-dev/flet-build-template -vv
