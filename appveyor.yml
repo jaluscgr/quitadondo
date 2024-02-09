@@ -152,8 +152,7 @@ for:
 
       - #export ANDROID_NDK_HOME= 
 
-      - ls usr/lib/android-sdk
-      - ls usr/lib
+      
 
 
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
@@ -162,7 +161,8 @@ for:
       - # Exportar la ruta como variable de entorno global
       - #export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
-      - ls
+      - ls usr/lib/android-sdk
+      - ls usr/lib
 
       # install Kivy for Android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
