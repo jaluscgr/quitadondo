@@ -162,7 +162,6 @@ for:
       - #export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
       - ls ./
-      - ls usr/lib/android-sdk
       - ls usr/lib
 
       # install Kivy for Android
