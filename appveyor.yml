@@ -130,11 +130,17 @@ for:
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
       - brew install --cask android-sdk
-      #- brew install cmake
+    
 
       # ver la ubicacion de java temurin
-      - /usr/libexec/java_home -v 1.8
-      #- echo $JAVA_HOME
+      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+      - cmake ... -DJAVA_HOME=$JAVA_HOME \
+           -DJAVA_INCLUDE_PATH=$JAVA_HOME/include \
+           -DJAVA_INCLUDE_PATH2=$JAVA_HOME/include/darwin \
+           -DJAVA_AWT_INCLUDE_PATH=$JAVA_HOME/include
+      
+      - echo $JAVA_HOME
 
       -
 
