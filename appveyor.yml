@@ -150,7 +150,7 @@ for:
       
 
 
-      - export JAVA_HOME=/Users/appveyor/.jenv/versions/temurin64-1.8.0.402
+      - export JAVA_HOME=/Users/appveyor/.jenv/versions/temurin64-1.8.0.402/
 
 
         # Instalar flet
