@@ -157,6 +157,9 @@ for:
       - # Exportar la ruta como variable de entorno global
       - export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
+      - echo $ANDROID_NDK_HOME
+      - echo $ANDROID_PLATFORMS_HOME
+
       # install Kivy for Android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
       - pip3 install --upgrade cython
