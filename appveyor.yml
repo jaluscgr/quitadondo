@@ -131,6 +131,9 @@ for:
       - brew install --cask temurin8
       - brew install --cask android-sdk
 
+      - ls /usr/local/bin
+      - ls /usr/local
+
 
       - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
 
