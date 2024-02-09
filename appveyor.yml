@@ -135,10 +135,10 @@ for:
       # ver la ubicacion de java temurin
       - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-      - cmake ... -DJAVA_HOME=$JAVA_HOME \
-           -DJAVA_INCLUDE_PATH=$JAVA_HOME/include \
-           -DJAVA_INCLUDE_PATH2=$JAVA_HOME/include/darwin \
-           -DJAVA_AWT_INCLUDE_PATH=$JAVA_HOME/include
+      #- cmake ... -DJAVA_HOME=$JAVA_HOME \
+      #     -DJAVA_INCLUDE_PATH=$JAVA_HOME/include \
+      #     -DJAVA_INCLUDE_PATH2=$JAVA_HOME/include/darwin \
+      #     -DJAVA_AWT_INCLUDE_PATH=$JAVA_HOME/include
       
       - echo $JAVA_HOME
 
