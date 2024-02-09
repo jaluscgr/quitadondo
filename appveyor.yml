@@ -144,6 +144,7 @@ for:
 
       - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH 
 
+      - echo "y" | sdkmanager --licenses
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
