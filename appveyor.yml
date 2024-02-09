@@ -130,19 +130,27 @@ for:
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
       - brew install --cask android-sdk
+      - brew install cmake
+
+      # ver la ubicacion de java temurin
+      - /usr/libexec/java_home -v 1.8
+      - echo $JAVA_HOME
+
+      -
 
         # mirar los javas que hay instalando esto
-      - brew install jenv
-      - export PATH="$HOME/.jenv/bin:$PATH"
-      - eval "$(jenv init -)"
+      #- brew install jenv
+      #- export PATH="$HOME/.jenv/bin:$PATH"
+      #- eval "$(jenv init -)"
 
       #ver los javas disponibles
-      - jenv versions
-      - jenv add $(/usr/libexec/java_home -v 1.8)
-      - jenv versions
-      - jenv global temurin64-1.8.0.402
+      #- jenv versions
+      #- jenv add $(/usr/libexec/java_home -v 1.8)
+      #- jenv versions
+      #- jenv global temurin64-1.8.0.402
 
-      - jenv which java
+      #- jenv which java
+      #- jenv versions
 
 
 
@@ -162,7 +170,7 @@ for:
 
       - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH 
 
-      - for i in {1..6}; do echo "y"; done | sdkmanager --licenses --include_obsolete
+      - for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
