@@ -129,6 +129,8 @@ for:
 
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
+      - brew install --cask android-sdk
+
 
       - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
 
