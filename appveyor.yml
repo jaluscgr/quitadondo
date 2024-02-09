@@ -130,10 +130,10 @@ for:
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
       - brew install --cask android-sdk
-      - brew install cmake
+      #- brew install cmake
 
       # ver la ubicacion de java temurin
-      - /usr/libexec/java_home -v 1.8
+      #- /usr/libexec/java_home -v 1.8
       - echo $JAVA_HOME
 
       -
@@ -152,13 +152,10 @@ for:
       #- jenv which java
       #- jenv versions
 
-
-
-
       
 
 
-      - export JAVA_HOME=/Users/appveyor/.jenv/versions/temurin64-1.8.0.402/
+      - export JAVA_HOME=/Users/appveyor/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
 
 
         # Instalar flet
