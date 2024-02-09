@@ -131,8 +131,22 @@ for:
       - brew install --cask temurin8
       - brew install --cask android-sdk
 
-      - ls /usr/local/bin
-      - ls /usr/local
+        # mirar los javas que hay instalando esto
+      - brew install jenv
+      - export PATH="$HOME/.jenv/bin:$PATH"
+      - eval "$(jenv init -)"
+
+      #ver los javas disponibles
+      - jenv versions
+      - jenv add $(/usr/libexec/java_home -v 1.8)
+      - jenv versions
+      - jenv global 1.8
+      - jenv which java
+
+
+
+
+      
 
 
       - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
