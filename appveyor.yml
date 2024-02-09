@@ -123,7 +123,7 @@ for:
       - rm -f appveyor.yml
       - rm -rf .git
       - rm -rf .vscode
-      - ls ./
+      - ls /usr/lib
       - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
 
