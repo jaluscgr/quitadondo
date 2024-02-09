@@ -170,6 +170,7 @@ for:
       - # Cambia la configuración de Java
       - sudo update-alternatives --config java
       - echo "3"
+      - export JAVA_HOME=/usr/lib/jvm/jdk-18.0.2
 
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name serious_python
       - flutter upgrade --force
