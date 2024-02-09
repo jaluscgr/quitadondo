@@ -123,7 +123,7 @@ for:
       - rm -f appveyor.yml
       - rm -rf .git
       - rm -rf .vscode
-      - ls /usr/lib
+      - #ls /usr/lib
       - export PATH=$PATH:/home/appveyor/.local/bin
       - export PATH=$PATH:$(python3 -m site --user-base)/bin
 
@@ -161,8 +161,8 @@ for:
       - # Exportar la ruta como variable de entorno global
       - #export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
-      - ls ./
-      - ls usr/lib
+      - ls /usr/lib/android-sdk
+      - ls /usr/lib
 
       # install Kivy for Android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
