@@ -146,16 +146,16 @@ for:
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3 
-        # Obtener la ruta donde se descomprimió el NDK
-      -  NDK_DIR=$(find / -type d -name "android-ndk-*" 2>/dev/null | head -n 1)
-        # Exportar la ruta como variable de entorno global
-      -  export ANDROID_NDK_HOME="$NDK_DIR"
+      - # Obtener la ruta donde se descomprimió el NDK
+      - NDK_DIR=$(find / -type d -name "android-ndk-*" 2>/dev/null | head -n 1)
+      - # Exportar la ruta como variable de entorno global
+      - export ANDROID_NDK_HOME="$NDK_DIR"
 
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION" 
-      # Obtener la ruta donde se descomprimió la plataforma
-      -PLATFORM_DIR=$(find / -type d -name "android-*" 2>/dev/null | head -n 1)
-      # Exportar la ruta como variable de entorno global
-      -export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
+      - # Obtener la ruta donde se descomprimió la plataforma
+      - PLATFORM_DIR=$(find / -type d -name "android-*" 2>/dev/null | head -n 1)
+      - # Exportar la ruta como variable de entorno global
+      - export ANDROID_PLATFORMS_HOME="$PLATFORM_DIR"
 
       # install Kivy for Android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
