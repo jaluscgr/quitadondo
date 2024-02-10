@@ -159,7 +159,7 @@ for:
       - yes | sdkmanager --licenses
 
       # Then Install Tools
-      - echo "y" | sdkmanager "cmdline-tools;latest" "patcher;v4" "build-tools;30.0.2" "platforms;android-33" "emulator" "tools" "platform-tools" "ndk;25.2.9519653"
+      - y | sdkmanager "cmdline-tools;latest" "platforms;android-33" "emulator" "tools" "platform-tools" "ndk;25.2.9519653"
 
 
       - sdkmanager "ndk-bundle"
