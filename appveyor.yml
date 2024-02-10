@@ -143,40 +143,9 @@ for:
       - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
 
       # Instalar Android Studio
-      ## Since android-sdk is deprecated
-      - brew install --cask android-commandlinetools
-
-      # Export some paths
-      - echo $"\nexport ANDROID_HOME=`brew --prefix`/share/android-commandlinetools\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport PATH=$ANDROID_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
-
-      - echo $"\nexport SDK_MANAGER=`brew --prefix`/bin/sdkmanager\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport PATH=$SDK_MANAGER:$PATH\n" >> /Users/$(whoami)/.zshrc
-
-      - echo $"\nexport AVD=`brew --prefix`/bin/avdmanager\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport PATH=$AVD:$PATH\n" >> /Users/$(whoami)/.zshrc
-
-      # Then Accept all licenses
-      - yes | sdkmanager --licenses
-
-      # Then Install Tools
-      - sdkmanager "cmdline-tools;latest" "patcher;v4" "build-tools;30.0.2" "platforms;android-33" "emulator" "tools" "platform-tools"
-      
-      - sdkmanager "ndk-bundle"
-
       - brew install --cask android-studio
-
-      - ls $ANDROID_HOME
             
-        
-        # Aceptar los términos de licencia y condiciones
-      #- sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
-
-        # Instalar los componentes del SDK de Android
-      #- ~/Library/Android/sdk/tools/bin/sdkmanager "platforms;android-33" "build-tools;33.0.0"
-    
-
-
+      
       
 
         # Instalar flet
@@ -217,8 +186,8 @@ for:
 
 
         # Crear el entorno de distribución para Python en Android
-      #- for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "Y"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_NDK_HOME/ndk/$NDK_VERSION --dist-name mydist
-      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+      - for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "Y"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+      #- echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
 
       - export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
 
