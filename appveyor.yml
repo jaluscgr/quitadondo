@@ -133,7 +133,9 @@ for:
     
 
       # ver la ubicacion de java temurin
-      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+      - export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Content
+      - #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
 
       
       - echo $JAVA_HOME
@@ -164,7 +166,7 @@ for:
       #- p4a --help
 
       #arreglar cmake
-      - cmake ... -DJAVA_HOME=$(/usr/libexec/java_home -v 1.8) -DJAVA_INCLUDE_PATH=$(/usr/libexec/java_home -v 1.8)/include -DJAVA_INCLUDE_PATH2=$(/usr/libexec/java_home -v 1.8)/include/darwin -DJAVA_AWT_INCLUDE_PATH=$(/usr/libexec/java_home -v 1.8)/include
+      - cmake ... -DJAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents -DJAVA_INCLUDE_PATH=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/include -DJAVA_INCLUDE_PATH2=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/include/darwin -DJAVA_AWT_INCLUDE_PATH=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/include
 
         # Crear el entorno de distribución para Python en Android
       - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
