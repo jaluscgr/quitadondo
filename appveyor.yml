@@ -129,7 +129,15 @@ for:
 
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
-      - brew install --cask android-sdk
+
+      # Instalar Android Studio
+      - brew install --cask android-studio
+
+        # Aceptar los términos de licencia y condiciones
+      - sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
+
+        # Instalar los componentes del SDK de Android
+      #- ~/Library/Android/sdk/tools/bin/sdkmanager "platforms;android-33" "build-tools;33.0.0"
     
 
       # ver la ubicacion de java temurin
@@ -143,7 +151,7 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
+      - export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
@@ -152,9 +160,10 @@ for:
       - ls $ANDROID_HOME
 
 
-      - export PATH=$ANDROID_SDK_ROOT/bin:$PATH 
+      - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
+ 
 
-      - for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
+      #- for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
