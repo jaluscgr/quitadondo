@@ -135,14 +135,18 @@ for:
       # Verify this line is in .zshrc (Should be added automatically)
       #- [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
 
-      # List available java versions
+      # Listado de versiones disponibles de Java
       - jabba ls-remote
 
-      # Install JDK 16
-      - jabba install openjdk@1.16.0
+      # Instalar JDK 18
+      - jabba install openjdk@1.18.0
 
-      # Verify java version
+      # Establecer Java 18 como predeterminado
+      - jabba use openjdk@1.18.0
+
+      # Verificar la versión de Java
       - java -version
+
 
       ## The result should be : 
       # openjdk 16.0.1 2021-04-20
@@ -153,15 +157,15 @@ for:
       #- jabba use ...
 
       # Don't forget to export JAVA_HOME
-      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.16.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.18.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
       - echo $"\nexport PATH=$JAVA_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
             
       
-      - brew install gradle
+      #- brew install gradle
       ## Reinstall Gradle to Latest Version
-      - echo $"\nexport GRADLE_VERSION=$(echo $(arr=($(gradle --version | awk '{ print $2 }')) && echo ${arr[1]}))\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport GRADLE_HOME=`brew --prefix`/Cellar/gradle/$GRADLE_VERSION\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport PATH=$GRADLE_HOME/bin:$PATH\n" >> /Users/$(whoami)/.zshrc
+      #- echo $"\nexport GRADLE_VERSION=$(echo $(arr=($(gradle --version | awk '{ print $2 }')) && echo ${arr[1]}))\n" >> /Users/$(whoami)/.zshrc
+      #- echo $"\nexport GRADLE_HOME=`brew --prefix`/Cellar/gradle/$GRADLE_VERSION\n" >> /Users/$(whoami)/.zshrc
+      #- echo $"\nexport PATH=$GRADLE_HOME/bin:$PATH\n" >> /Users/$(whoami)/.zshrc
 
 
       ## Since android-sdk is deprecated
@@ -196,7 +200,7 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+      - export ANDROID_SDK_ROOT="/usr/local/share/android-commandlinetools"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
