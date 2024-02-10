@@ -127,42 +127,83 @@ for:
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
-        # Añadir el repositorio apt de Eclipse Adoptium
-      - brew install --cask temurin8
 
-      
-      # ver la ubicacion de java temurin
-      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+      # Install Jabba 
+      - echo $'\nexport JABBA_VERSION="0.11.2"\n' >> /Users/$(whoami)/.zshrc
+      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
 
-      
-      - echo $JAVA_HOME
+      # Verify this line is in .zshrc (Should be added automatically)
+      - [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
 
-      
-      - export JAVA_INCLUDE_PATH="$JAVA_HOME/include"
-      - export JAVA_INCLUDE_PATH2="$JAVA_HOME/include/darwin"
-      - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
+      # List available java versions
+      - jabba ls-remote
 
-      # Instalar Android Studio
-      - brew install --cask android-studio
+      # Install JDK 16
+      - jabba install openjdk@1.16.0
+
+      # Verify java version
+      - java -version
+
+      ## The result should be : 
+      # openjdk 16.0.1 2021-04-20
+      # OpenJDK Runtime Environment (build 16.0.1+9-24)
+      # OpenJDK 64-Bit Server VM (build 16.0.1+9-24, mixed mode, sharing)
+
+      # Switch to a different Java version (need to first be installed using Jabba)
+      - jabba use ...
+
+      # Don't forget to export JAVA_HOME
+      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.16.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$JAVA_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
             
       
-      
+      - brew install gradle
+      ## Reinstall Gradle to Latest Version
+      - echo $"\nexport GRADLE_VERSION=$(echo $(arr=($(gradle --version | awk '{ print $2 }')) && echo ${arr[1]}))\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport GRADLE_HOME=`brew --prefix`/Cellar/gradle/$GRADLE_VERSION\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$GRADLE_HOME/bin:$PATH\n" >> /Users/$(whoami)/.zshrc
+
+
+      ## Since android-sdk is deprecated
+      - brew install --cask android-commandlinetools
+
+      # Export some paths
+      - echo $"\nexport ANDROID_HOME=`brew --prefix`/share/android-commandlinetools\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$ANDROID_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
+
+      - echo $"\nexport SDK_MANAGER=`brew --prefix`/bin/sdkmanager\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$SDK_MANAGER:$PATH\n" >> /Users/$(whoami)/.zshrc
+
+      - echo $"\nexport AVD=`brew --prefix`/bin/avdmanager\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$AVD:$PATH\n" >> /Users/$(whoami)/.zshrc
+
+      # Then Accept all licenses
+      - yes | sdkmanager --licenses
+
+      # Then Install Tools
+      - echo "y" | sdkmanager "cmdline-tools;latest" "patcher;v4" "build-tools;30.0.2" "platforms;android-33" "emulator" "tools" "platform-tools" "ndk;25.2.9519653"
+
+
+      - sdkmanager "ndk-bundle"
+
+
+      - brew install android-platform-tools
+
+      - echo $"\nexport ADB=`brew --prefix`/bin/adb\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$ADB:$PATH\n" >> /Users/$(whoami)/.zshrc
+
 
         # Instalar flet
       - pip3 install flet
 
-      #- export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
       - export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
 
-      - export PATH=$ANDROID_SDK_ROOT/bin:$PATH
- 
 
-      - for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
-      - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
-      - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
+      #- echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
+      #- echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
       #- ls $ANDROID_HOME
 
@@ -172,17 +213,6 @@ for:
 
         # Actualizar Cython
       - pip3 install --upgrade cython
-
-        # Verificar la instalación de p4a
-      #- p4a --help
-
-
-      #- mkdir build
-      #- cd build
-      
-      #arreglar cmake
-      #- cmake -S .. -DJAVA_HOME="$JAVA_HOME" -DJAVA_INCLUDE_PATH="$JAVA_INCLUDE_PATH" -DJAVA_INCLUDE_PATH2="$JAVA_INCLUDE_PATH2" -DJAVA_AWT_INCLUDE_PATH="$JAVA_AWT_INCLUDE_PATH"
-
 
 
         # Crear el entorno de distribución para Python en Android
