@@ -133,7 +133,7 @@ for:
       - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
 
       # Verify this line is in .zshrc (Should be added automatically)
-      - [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
+      #- [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
 
       # List available java versions
       - jabba ls-remote
