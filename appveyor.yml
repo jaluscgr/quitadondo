@@ -133,8 +133,12 @@ for:
       # Instalar Android Studio
       - brew install --cask android-studio
 
+      - export ANDROID_HOME=$(/usr/libexec/PlistBuddy -c "Print :AndroidSdkRoot" ~/Library/Preferences/com.google.android.studio.plist)
+      - export PATH="$PATH:$ANDROID_HOME/tools"
+      - export PATH="$PATH:$ANDROID_HOME/tools/bin"
+      - export PATH="$PATH:$ANDROID_HOME/platform-tools"
         # Aceptar los términos de licencia y condiciones
-      - sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
+      #- sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
 
         # Instalar los componentes del SDK de Android
       #- ~/Library/Android/sdk/tools/bin/sdkmanager "platforms;android-33" "build-tools;33.0.0"
@@ -163,7 +167,7 @@ for:
       - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH
  
 
-      #- for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
+      - for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
