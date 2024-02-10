@@ -163,8 +163,13 @@ for:
         # Verificar la instalación de p4a
       #- p4a --help
 
+      - export JAVA_INCLUDE_PATH="$JAVA_HOME/include"
+      - export JAVA_INCLUDE_PATH2="$JAVA_HOME/include/darwin"
+      - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
+
       #arreglar cmake
-      - cmake ... -DJAVA_HOME=$(/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home) -DJAVA_INCLUDE_PATH=$(/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home)/include -DJAVA_INCLUDE_PATH2=$(/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home)/include/darwin -DJAVA_AWT_INCLUDE_PATH=$(/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home)/include
+      - cmake ... -DJAVA_HOME="$JAVA_HOME" -DJAVA_INCLUDE_PATH="$JAVA_INCLUDE_PATH" -DJAVA_INCLUDE_PATH2="$JAVA_INCLUDE_PATH2" -DJAVA_AWT_INCLUDE_PATH="$JAVA_AWT_INCLUDE_PATH"
+
 
 
         # Crear el entorno de distribución para Python en Android
