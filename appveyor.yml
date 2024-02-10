@@ -154,7 +154,7 @@ for:
 
       - export PATH=$ANDROID_SDK_ROOT/bin:$PATH 
 
-      #- for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
+      - for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
@@ -183,8 +183,8 @@ for:
 
 
         # Crear el entorno de distribución para Python en Android
-      #- for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "Y"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
-      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+      - for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "Y"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+      #- echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
 
       - export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
 
