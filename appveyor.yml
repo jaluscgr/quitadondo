@@ -167,11 +167,11 @@ for:
       - export JAVA_INCLUDE_PATH2="$JAVA_HOME/include/darwin"
       - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
 
-      - mkdir build
-      - cd build
+      #- mkdir build
+      #- cd build
       
       #arreglar cmake
-      - cmake -S .. -DJAVA_HOME="$JAVA_HOME" -DJAVA_INCLUDE_PATH="$JAVA_INCLUDE_PATH" -DJAVA_INCLUDE_PATH2="$JAVA_INCLUDE_PATH2" -DJAVA_AWT_INCLUDE_PATH="$JAVA_AWT_INCLUDE_PATH"
+      #- cmake -S .. -DJAVA_HOME="$JAVA_HOME" -DJAVA_INCLUDE_PATH="$JAVA_INCLUDE_PATH" -DJAVA_INCLUDE_PATH2="$JAVA_INCLUDE_PATH2" -DJAVA_AWT_INCLUDE_PATH="$JAVA_AWT_INCLUDE_PATH"
 
 
 
