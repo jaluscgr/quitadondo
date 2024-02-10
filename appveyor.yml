@@ -143,7 +143,7 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796"
+      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
@@ -151,7 +151,7 @@ for:
 
       - ls -l /usr/local/share/android-sdk
 
-      - ls /usr/local/Caskroom/android-sdk/4333796
+      - ls /usr/local/Caskroom/android-sdk/4333796/tools
       - ls /usr/local/Caskroom/android-sdk
 
 
