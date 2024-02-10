@@ -131,10 +131,24 @@ for:
       - brew install --cask temurin8
 
       # Instalar Android Studio
-      - brew install --cask android-studio
-      - export ANDROID_HOME="$HOME/Library/Android"
-      - export PATH=$PATH:$ANDROID_HOME/tools/bin
-   
+      - brew install ant
+      - brew install maven
+      - brew install gradle
+      - brew install android-sdk
+      - brew install android-ndk
+      - export ANT_HOME=/usr/local/opt/ant
+      - export MAVEN_HOME=/usr/local/opt/maven
+      - export GRADLE_HOME=/usr/local/opt/gradle
+      - export ANDROID_HOME=/usr/local/opt/android-sdk
+      - export ANDROID_NDK_HOME=/usr/local/opt/android-ndk
+
+      - export PATH=$ANT_HOME/bin:$PATH
+      - export PATH=$MAVEN_HOME/bin:$PATH
+      - export PATH=$GRADLE_HOME/bin:$PATH
+      - export PATH=$ANDROID_HOME/tools:$PATH
+      - export PATH=$ANDROID_HOME/platform-tools:$PATH
+      - export PATH=$ANDROID_HOME/build-tools/19.1.0:$PATH
+        
         # Aceptar los términos de licencia y condiciones
       #- sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
 
