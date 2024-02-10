@@ -130,6 +130,18 @@ for:
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
 
+      
+      # ver la ubicacion de java temurin
+      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+      
+      - echo $JAVA_HOME
+
+      
+      - export JAVA_INCLUDE_PATH="$JAVA_HOME/include"
+      - export JAVA_INCLUDE_PATH2="$JAVA_HOME/include/darwin"
+      - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
+
       # Instalar Android Studio
       ## Since android-sdk is deprecated
       - brew install --cask android-commandlinetools
@@ -164,11 +176,6 @@ for:
       #- ~/Library/Android/sdk/tools/bin/sdkmanager "platforms;android-33" "build-tools;33.0.0"
     
 
-      # ver la ubicacion de java temurin
-      - export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-
-      
-      - echo $JAVA_HOME
 
       
 
@@ -200,9 +207,6 @@ for:
         # Verificar la instalación de p4a
       #- p4a --help
 
-      - export JAVA_INCLUDE_PATH="$JAVA_HOME/include"
-      - export JAVA_INCLUDE_PATH2="$JAVA_HOME/include/darwin"
-      - export JAVA_AWT_INCLUDE_PATH="$JAVA_HOME/include"
 
       #- mkdir build
       #- cd build
