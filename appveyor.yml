@@ -133,10 +133,7 @@ for:
       # Instalar Android Studio
       - brew install --cask android-studio
 
-      - export ANDROID_HOME=$(/usr/libexec/PlistBuddy -c "Print :AndroidSdkRoot" ~/Library/Preferences/com.google.android.studio.plist)
-      - export PATH="$PATH:$ANDROID_HOME/tools"
-      - export PATH="$PATH:$ANDROID_HOME/tools/bin"
-      - export PATH="$PATH:$ANDROID_HOME/platform-tools"
+   
         # Aceptar los términos de licencia y condiciones
       #- sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
 
