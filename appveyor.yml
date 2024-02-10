@@ -131,27 +131,31 @@ for:
       - brew install --cask temurin8
 
       # Instalar Android Studio
-      - brew install ant
-      - brew install maven
-      - brew install gradle
-      - brew install android-sdk
-      - brew install android-ndk
-      - export ANT_HOME=/usr/local/opt/ant
-      - export MAVEN_HOME=/usr/local/opt/maven
-      - export GRADLE_HOME=/usr/local/opt/gradle
-      - export ANDROID_HOME=/usr/local/Caskroom/android-sdk/4333796/tools
-      - export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+      ## Since android-sdk is deprecated
+      - brew install --cask android-commandlinetools
 
-      - export PATH=$ANT_HOME/bin:$PATH
-      - export PATH=$MAVEN_HOME/bin:$PATH
-      - export PATH=$GRADLE_HOME/bin:$PATH
-      - export PATH=$ANDROID_HOME/tools:$PATH
-      - export PATH=$ANDROID_HOME/platform-tools:$PATH
-      - export PATH=$ANDROID_HOME/build-tools/19.1.0:$PATH
+      # Export some paths
+      - echo $"\nexport ANDROID_HOME=`brew --prefix`/share/android-commandlinetools\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$ANDROID_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
 
-      - ls $ANDROID_NDK_HOME
+      - echo $"\nexport SDK_MANAGER=`brew --prefix`/bin/sdkmanager\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$SDK_MANAGER:$PATH\n" >> /Users/$(whoami)/.zshrc
 
+      - echo $"\nexport AVD=`brew --prefix`/bin/avdmanager\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport PATH=$AVD:$PATH\n" >> /Users/$(whoami)/.zshrc
+
+      # Then Accept all licenses
+      - yes | sdkmanager --licenses
+
+      # Then Install Tools
+      - sdkmanager "cmdline-tools;latest" "patcher;v4" "build-tools;30.0.2" "platforms;android-33" "emulator" "tools" "platform-tools"
       
+      - sdkmanager "ndk-bundle"
+
+      - brew install --cask android-studio
+
+      - ls $ANDROID_HOME
+            
         
         # Aceptar los términos de licencia y condiciones
       #- sudo /usr/libexec/PlistBuddy -c "Add :JVMOptions:Properties: privacy_policy_accepted true" /Library/Preferences/com.google.android.studio.plist
@@ -171,16 +175,10 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
+      #- export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
+      - export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
-
-      
-
-      #- ls $ANDROID_HOME
-      #- ls $ANDROID_SDK_ROOT
-      #- ls $ANDROID_NDK_HOME
-    
 
 
       - export PATH=$ANDROID_SDK_ROOT/bin:$PATH
@@ -216,7 +214,7 @@ for:
 
         # Crear el entorno de distribución para Python en Android
       #- for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "Y"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_NDK_HOME/ndk/$NDK_VERSION --dist-name mydist
-      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_NDK_HOME/ndk/$NDK_VERSION --dist-name mydist
+      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
 
       - export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
 
