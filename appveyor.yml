@@ -143,13 +143,16 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
       - which sdkmanager
 
       - ls -l /usr/local/share/android-sdk
+
+      - ls /usr/local/Caskroom/android-sdk/4333796
+      - ls /usr/local/Caskroom/android-sdk
 
 
 
@@ -182,8 +185,8 @@ for:
 
 
         # Crear el entorno de distribución para Python en Android
-      - for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "N"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
-      
+      #- for i in {1..2}; do if [ $i -eq 1 ]; then echo "N"; else echo "N"; fi; done | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
+      - echo "N" | p4a create --requirements python3 --arch arm64-v8a --arch armeabi-v7a --arch x86_64 --sdk-dir $ANDROID_SDK_ROOT --ndk-dir $ANDROID_SDK_ROOT/ndk/$NDK_VERSION --dist-name mydist
 
       - export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
 
