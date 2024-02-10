@@ -135,18 +135,17 @@ for:
       # Verify this line is in .zshrc (Should be added automatically)
       #- [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
 
-      # Listado de versiones disponibles de Java
+      # List available java versions
       - jabba ls-remote
 
-      # Instalar JDK 18
-      - jabba install openjdk@1.18.0
+      # Install JDK 16
+      - jabba install openjdk@1.16.0
 
       # Establecer Java 18 como predeterminado
-      - jabba use openjdk@1.18.0
+      - jabba use openjdk@1.16.0
 
-      # Verificar la versión de Java
+      # Verify java version
       - java -version
-
 
       ## The result should be : 
       # openjdk 16.0.1 2021-04-20
@@ -157,7 +156,7 @@ for:
       #- jabba use ...
 
       # Don't forget to export JAVA_HOME
-      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.18.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
+      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.16.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
       - echo $"\nexport PATH=$JAVA_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
             
       
