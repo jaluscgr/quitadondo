@@ -129,7 +129,7 @@ for:
 
         # Añadir el repositorio apt de Eclipse Adoptium
       - brew install --cask temurin8
-      #- brew install --cask android-sdk
+      - brew install --cask android-sdk
     
 
       # ver la ubicacion de java temurin
@@ -138,7 +138,7 @@ for:
       
       - echo $JAVA_HOME
 
-      -
+      
 
         # Instalar flet
       - pip3 install flet
@@ -147,7 +147,7 @@ for:
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
-      - which sdkmanager
+      
 
       - ls $ANDROID_HOME
 
