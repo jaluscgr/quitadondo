@@ -127,37 +127,12 @@ for:
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
+      #instalar java 18
+      - brew install --cask temurin18
+      - export JAVA_HOME=$(/usr/libexec/java_home -v 18)
+      
+      - echo $JAVA_HOME
 
-      # Install Jabba 
-      - echo $'\nexport JABBA_VERSION="0.11.2"\n' >> /Users/$(whoami)/.zshrc
-      - curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
-
-      # Verify this line is in .zshrc (Should be added automatically)
-      #- [ -s "/Users/$(whoami)/.jabba/jabba.sh" ] && source "/Users/$(whoami)/.jabba/jabba.sh"
-
-      # List available java versions
-      - jabba ls-remote
-
-      # Install JDK 16
-      - jabba install openjdk@1.16.0
-
-      # Establecer Java 18 como predeterminado
-      - jabba use openjdk@1.16.0
-
-      # Verify java version
-      - java -version
-
-      ## The result should be : 
-      # openjdk 16.0.1 2021-04-20
-      # OpenJDK Runtime Environment (build 16.0.1+9-24)
-      # OpenJDK 64-Bit Server VM (build 16.0.1+9-24, mixed mode, sharing)
-
-      # Switch to a different Java version (need to first be installed using Jabba)
-      #- jabba use ...
-
-      # Don't forget to export JAVA_HOME
-      - echo $"\nexport JAVA_HOME=/Users/$(whoami)/.jabba/jdk/openjdk@1.16.0/Contents/Home\n" >> /Users/$(whoami)/.zshrc
-      - echo $"\nexport PATH=$JAVA_HOME:$PATH\n" >> /Users/$(whoami)/.zshrc
             
       
       #- brew install gradle
