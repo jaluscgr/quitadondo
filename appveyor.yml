@@ -147,8 +147,10 @@ for:
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
-      - ls $ANDROID_SDK_ROOT
-      - ls $HOME/Library/Android/sdk
+      - which sdkmanager
+
+      - ls -l /usr/local/share/android-sdk
+
 
 
       - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH 
