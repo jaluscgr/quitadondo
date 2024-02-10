@@ -124,22 +124,6 @@ for:
         # Agregar el directorio bin de python3 al PATH
       - export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
-      - # Descargar e instalar Android Studio
-      - ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/install/2023.1.1.28/android-studio-2023.1.1.28-mac.dmg"
-      - curl -o android-studio-2023.1.1.28-mac.dmg $ANDROID_STUDIO_URL
-      - hdiutil attach android-studio-2023.1.1.28-mac.dmg
-      - cp -R /Volumes/Android\ Studio/Android\ Studio.app /Applications/
-      - hdiutil detach /Volumes/Android\ Studio
-      - rm android-studio.dmg
-
-      # Configurar las variables de entorno
-      - echo 'export ANDROID_HOME=$HOME/Library/Android/sdk' >> ~/.bash_profile
-      - echo 'export PATH=$PATH:$ANDROID_HOME/tools' >> ~/.bash_profile
-      - echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.bash_profile
-
-        # Aceptar las licencias del SDK de Android
-      - for i in {1..7}; do echo "y"; done | /Applications/android-studio/cmdline-tools/latest/bin/sdkmanager --licenses
-
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
@@ -159,20 +143,22 @@ for:
         # Instalar flet
       - pip3 install flet
 
-      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk"
+      - export ANDROID_SDK_ROOT="/usr/local/Caskroom/android-sdk/4333796/tools"
       - export NDK_VERSION=25.2.9519653
       - export SDK_VERSION=android-33
 
       - which sdkmanager
 
+      - ls $ANDROID_HOME
 
 
-
-      - export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH 
+      - export PATH=$ANDROID_SDK_ROOT/bin:$PATH 
 
       #- for i in {1..7}; do echo "y"; done | sdkmanager --licenses --include_obsolete
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
+
+      - ls $ANDROID_HOME
 
 
         # Instalar python-for-android
