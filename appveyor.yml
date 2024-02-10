@@ -162,6 +162,8 @@ for:
       - echo "y" | sdkmanager --install "ndk;$NDK_VERSION" --channel=3
       - echo "y" | sdkmanager --install "platforms;$SDK_VERSION"     
 
+      - ls /usr/local/Caskroom/android-sdk/4333796/tools
+
 
         # Instalar python-for-android
       - pip3 install git+https://github.com/flet-dev/python-for-android.git@3.11.6
