@@ -167,13 +167,13 @@ for:
 
       - toolchain build python3 
 
-      - export SERIOUS_PYTHON_IOS_DIST="<full-path-to-dist-directory>"
+      - export SERIOUS_PYTHON_IOS_DIST=/Users/appveyor/projects/quitadondo/dist
 
 
 
 
       #flutter
-      - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
+      #- HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
       - curl $FLUTTER_MACOS_URL -o "$HOME/flutter_macos_stable.zip"
       - unzip -qq "$HOME/flutter_macos_stable.zip" -d $HOME
       - export PATH="$PATH:$HOME/flutter/bin"
@@ -190,16 +190,18 @@ for:
       - flet build ipa -vv
     
     after_build:
-      - echo "Verificando la existencia de archivos .ipa en ./build/ipa"
-      #- toolchain build python3
-      - ls dist
+      - echo "Verificando la existencia de archivos .ipa en ./build/ipa
       - ls ./build/ipa
       - echo "Creando archivo zip con app.tar.gz"
-      - zip -r fletsheet-ios.zip ./build/ipa/Runner.xcarchive
-
+      - zip -r fletsheet-ios.zip ./build/ipa/
 
     artifacts:
       - path: fletsheet-ios.zip
+
+
+
+
+    
 
 
   # ======================================
