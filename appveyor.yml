@@ -116,7 +116,7 @@ for:
 
       - alias pod="arch -arm64 pod"
 
-      - pip3 install flet
+      
     
 
       #instalar xcode
@@ -152,6 +152,11 @@ for:
 
 
       #usar python ios 
+
+      - python3 -m venv .venv
+      - source .venv/bin/activate
+
+      - pip3 install flet
 
       - pip install git+https://github.com/flet-dev/python-for-ios.git
 
