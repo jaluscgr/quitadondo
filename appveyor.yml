@@ -16,6 +16,10 @@ environment:
 
     matrix:
 
+    - job_name: Build app for iOS
+      job_group: build_app_darwin
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
+
     - job_name: Build app for Android
       job_group: build_app_android
       APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
@@ -36,10 +40,6 @@ environment:
     - job_name: Build app for Linux
       job_group: build_app_linux
       APPVEYOR_BUILD_WORKER_IMAGE: ubuntu2004
-
-    - job_name: Build app for iOS
-      job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
     
     - job_name: Test on Android
       job_group: test_Android
@@ -79,6 +79,118 @@ deploy:
 
 
 for:
+
+
+
+# ======================================
+  #      Build app for iOS
+  # ======================================
+
+  - matrix:
+      only:
+        - job_name: Build app for iOS
+
+    install:
+      - # Agregar directorio local bin al PATH
+      - export PATH="$PATH:$HOME/.local/bin"
+
+        # Agregar el directorio bin de python3 al PATH
+      - export PATH="$PATH:$(python3 -m site --user-base)/bin"
+
+        # Añadir la clave GPG de Eclipse Adoptium
+      - brew tap homebrew/cask-versions
+
+      # install ruby 
+      - curl -L https://get.rvm.io | bash -s stable
+      - echo $"\nsource /Users/$(whoami)/.rvm/scripts/rvm\n" >> /Users/$(whoami)/.zshrc # or .bashrc
+      - rvm install ruby-3.2.2
+      - rvm use ruby-3.2.2
+      - rvm --default use 3.2.2
+      
+      - alias gem="arch -x86_64 sudo gem"
+
+      - gem install --user-install ffi -- --enable-libffi-alloc
+      #install bundles
+      - gem install bundler
+      #install cocoapods
+      - sudo gem install cocoapods -n /usr/local/bin
+
+      - alias pod="arch -arm64 pod"
+
+      - pip3 install flet
+    
+
+      #instalar xcode
+      - brew install robotsandpencils/made/xcodes
+      # list available xcode versions
+      - xcodes list
+
+      # Update available xcode versions
+      - xcodes update
+
+      # Install Aria2 "For Fast download"
+      - brew install aria2
+
+      # Install XCode (ex. Xcode 13 Beta 5)
+      - xcodes install 14.3
+
+      - export XCODES_USERNAME="<your_email>"
+      - export XCODES_PASSWORD="<your_pass>"
+
+
+      #install runtimes
+
+      - xcodes runtimes --include-betas
+
+      - xcodes runtimes install "iOS 17.0-beta1"
+
+      - sudo gem install xcode-install
+
+
+      #usar python ios 
+
+      - pip install git+https://github.com/flet-dev/python-for-ios.git
+
+      - brew install autoconf automake libtool pkg-config
+      - brew link libtool
+
+      #start the compilation
+
+      - toolchain build python3 
+
+      - export SERIOUS_PYTHON_IOS_DIST="<full-path-to-dist-directory>"
+
+
+
+
+      #flutter
+      - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
+      - curl $FLUTTER_MACOS_URL -o "$HOME/flutter_macos_stable.zip"
+      - unzip -qq "$HOME/flutter_macos_stable.zip" -d $HOME
+      - export PATH="$PATH:$HOME/flutter/bin"
+      - flutter channel stable
+      - flutter upgrade
+      - flutter config --enable-macos-desktop
+      - flutter doctor
+      
+
+      
+
+    build_script:
+      
+      - flet build ipa -vv
+    
+    after_build:
+      - echo "Verificando la existencia de archivos .ipa en ./build/ipa"
+      #- toolchain build python3
+      - ls dist
+      - ls ./build/ipa
+      - echo "Creando archivo zip con app.tar.gz"
+      - zip -r fletsheet-ios.zip ./build/ipa/Runner.xcarchive
+
+
+    artifacts:
+      - path: fletsheet-ios.zip
 
 
   # ======================================
@@ -319,55 +431,6 @@ for:
       - path: fletsheet-linux.tar.gz
 
 
-
-# ======================================
-  #      Build app for iOS
-  # ======================================
-
-  - matrix:
-      only:
-        - job_name: Build app for iOS
-
-    install:
-      - pip3 install flet
-      - export PATH=$PATH:~/.local/bin
-      #- pip3 install flet-route
-      #- pip3 install openpyxl
-      #- export PATH=$PATH:$(python3 -m site --user-base)/bin
-
-      # install Kivy toolchain
-      - pip3 list
-      - pip3 install git+https://github.com/flet-dev/python-for-ios.git
-      - HOMEBREW_NO_AUTO_UPDATE=1 brew install autoconf automake libtool pkg-config
-      - brew link libtool
-      - HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
-      - curl $FLUTTER_MACOS_URL -o "$HOME/flutter_macos_stable.zip"
-      - unzip -qq "$HOME/flutter_macos_stable.zip" -d $HOME
-      - export PATH="$PATH:$HOME/flutter/bin"
-      # Configura PATH para incluir el comando toolchain si es necesario
-      - export PATH="$PATH:$(python3 -m site --user-base)/bin"
-      - flutter channel stable
-      - flutter upgrade
-      - flutter config --enable-macos-desktop
-      - flutter doctor
-      - toolchain build python3
-      - export SERIOUS_PYTHON_IOS_DIST="$(pwd)/dist"
-
-    build_script:
-      # build Python 3
-      - flet build ipa --template gh:flet-dev/flet-build-template -vv
-    
-    after_build:
-      - echo "Verificando la existencia de archivos .ipa en ./build/ipa"
-      #- toolchain build python3
-      - ls dist
-      - ls ./build/ipa
-      - echo "Creando archivo zip con app.tar.gz"
-      - zip -r fletsheet-ios.zip ./build/ipa/Runner.xcarchive
-
-
-    artifacts:
-      - path: fletsheet-ios.zip
     
 
 # ======================================
