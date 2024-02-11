@@ -131,10 +131,10 @@ for:
       - brew install aria2
 
       # Install XCode (ex. Xcode 13 Beta 5)
-      - xcodes install 14.3
+      #- xcodes install 14.3 ya tiene por default el 14.1
 
-      - export XCODES_USERNAME="<your_email>"
-      - export XCODES_PASSWORD="<your_pass>"
+      #- export XCODES_USERNAME="<your_email>"
+      #- export XCODES_PASSWORD="<your_pass>"
 
 
       #install runtimes
