@@ -146,7 +146,7 @@ for:
 
       - xcodes runtimes --include-betas
 
-      - xcodes runtimes install "iOS 17.0-beta1"
+      #- xcodes runtimes install "iOS 17.0-beta1"
 
       - sudo gem install xcode-install
 
