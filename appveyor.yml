@@ -139,6 +139,11 @@ for:
 
       #install runtimes
 
+      #dice que para que runtimes funcione hay que hacer esto
+      - brew remove xcodes
+      - brew untap robotsandpenciles/made
+      - brew install xcodesorg/made/xcodes
+
       - xcodes runtimes --include-betas
 
       - xcodes runtimes install "iOS 17.0-beta1"
