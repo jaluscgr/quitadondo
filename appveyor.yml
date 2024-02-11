@@ -100,6 +100,8 @@ for:
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
+      - brew install cocoapods
+
       # install ruby 
       #- curl -L https://get.rvm.io | bash -s stable
       #- echo $"\nsource /Users/$(whoami)/.rvm/scripts/rvm\n" >> /Users/$(whoami)/.zshrc # or .bashrc
@@ -112,7 +114,7 @@ for:
       #install bundles
       - gem install bundler
       #install cocoapods
-      - sudo gem install cocoapods -n /usr/local/bin
+      #- sudo gem install cocoapods -n /usr/local/bin
 
       - alias pod="arch -arm64 pod"
 
@@ -121,14 +123,10 @@ for:
 
       #instalar xcode
       - brew install robotsandpencils/made/xcodes
-      # list available xcode versions
-      - xcodes list
-
-      # Update available xcode versions
-      - xcodes update
+      
 
       # Install Aria2 "For Fast download"
-      - brew install aria2
+      #- brew install aria2
 
       # Install XCode (ex. Xcode 13 Beta 5)
       #- xcodes install 14.3 ya tiene por default el 14.1
@@ -144,6 +142,14 @@ for:
       #- brew untap robotsandpenciles/made
       - brew install xcodesorg/made/xcodes
 
+      # list available xcode versions
+      - xcodes list
+
+      # Update available xcode versions
+      - xcodes update
+
+      - xcodes select 13.4.1
+
       - xcodes runtimes --include-betas
 
       #- xcodes runtimes install "iOS 17.0-beta1"
@@ -153,8 +159,8 @@ for:
 
       #usar python ios 
 
-      - python3 -m venv .venv
-      - source .venv/bin/activate
+      #- python3 -m venv .venv
+      #- source .venv/bin/activate
 
       - pip3 install flet
 
@@ -173,7 +179,7 @@ for:
 
 
       #flutter
-      #- HOMEBREW_NO_AUTO_UPDATE=1 brew install cocoapods
+      
       - curl $FLUTTER_MACOS_URL -o "$HOME/flutter_macos_stable.zip"
       - unzip -qq "$HOME/flutter_macos_stable.zip" -d $HOME
       - export PATH="$PATH:$HOME/flutter/bin"
