@@ -103,9 +103,8 @@ for:
       # install ruby 
       - curl -L https://get.rvm.io | bash -s stable
       - echo $"\nsource /Users/$(whoami)/.rvm/scripts/rvm\n" >> /Users/$(whoami)/.zshrc # or .bashrc
-      - rvm install ruby-3.2.2
-      - rvm use ruby-3.2.2
-      - rvm --default use 3.2.2
+      - rvm use ruby-3.1.3
+      - rvm --default use 3.1.3
       
       - alias gem="arch -x86_64 sudo gem"
 
@@ -464,23 +463,7 @@ for:
     build: off
 
     test_script:
-      - echo "Descargando el artefacto AndroidAPK de AppVeyor"
-      - appveyor DownloadFile "https://github.com/jaluscg/FletSheet/releases/download/1.0.208/fletsheet-android.zip"
-      - echo "Descomprimiendo el artefacto"
-      - unzip fletsheet-android.zip -d apk
-      # Instalar el APK en el emulador
-      - adb install apk/build/apk/app-release.apk
-      # Limpiar el buffer de logcat
-      - adb logcat -c
-      # Iniciar la aplicación
-      - adb shell am start -n com.flet.fletsheet/.MainActivity
-      # Esperar un momento para que la aplicación se inicie y genere logs
-      - sleep 20
-      # Recolectar y mostrar logs específicos
-      - adb logcat -d > logcat.txt
-      - cat logcat.txt
-      - ls ./
-    
+      
     after_test:
       # Empaquetar logs en un archivo ZIP
       #- zip -r logs_android.zip logcat.txt
