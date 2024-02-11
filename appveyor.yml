@@ -148,11 +148,11 @@ for:
       # Update available xcode versions
       - xcodes update
 
-      - xcodes select 13.4.1
+      #- xcodes select 13.4.1
 
       - xcodes runtimes --include-betas
 
-      #- xcodes runtimes install "iOS 17.0-beta1"
+      - xcodes runtimes install "iOS 17.0-beta1"
 
       - sudo gem install xcode-install
 
