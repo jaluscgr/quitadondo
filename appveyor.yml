@@ -199,8 +199,7 @@ for:
 
       - export SERIOUS_PYTHON_P4A_DIST=$HOME/.python-for-android/dists/mydist
 
-        # Establecer la variable de entorno SERIOUS_PYTHON_P4A_DIST
-      - export SERIOUS_PYTHON_P4A_DIST="$HOME/.local/share/python-for-android/dists/mydist"
+
 
       
       #flutter
