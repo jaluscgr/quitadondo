@@ -265,12 +265,12 @@ for:
       #- sim D9C60396-FC76-4693-AEE2-84AA7C8EB200
 
       #- open -a Simulator
-      - gem install fastlane -NV
-      - bundle update
-      - bundle install
-      - bundle exec fastlane ...
+      #- gem install fastlane -NV
+      #- bundle update
+      #- bundle install
+      #- bundle exec fastlane ...
 
-      - sudo chown -R $(whoami) /Users/$(whoami)/.gem
+      #- sudo chown -R $(whoami) /Users/$(whoami)/.gem
 
 
       #usar python ios 
