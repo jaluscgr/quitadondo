@@ -157,32 +157,32 @@ for:
 
       - brew install repo
 
-      - brew install git
-      - brew install git-lfs
+      #- brew install git
+      #- brew install git-lfs
 
-      - brew install git-flow
+      #- brew install git-flow
 
-      - brew install --cask sublime-text
+      #- brew install --cask sublime-text
 
-      - brew install --cask fork
+      #- brew install --cask fork
 
-      - brew install --cask virtualbox
+      #- brew install --cask virtualbox
 
-      - brew install docker
+      #- brew install docker
 
-      - brew install --cask kitematic
+      #- brew install --cask kitematic
 
-      - brew install --cask openinterminal
+      #- brew install --cask openinterminal
       
-      - brew install --cask spectacle
+      #- brew install --cask spectacle
 
-      - brew install --cask dozer
+      #- brew install --cask dozer
 
-      - brew install --cask db-browser-for-sqlite
+      #- brew install --cask db-browser-for-sqlite
 
-      - brew install --cask proxyman
+      #- brew install --cask proxyman
 
-      - brew install --cask postman
+      #- brew install --cask postman
 
 
       #- brew install cocoapods
@@ -212,7 +212,7 @@ for:
 
       - alias pod="arch -arm64 pod" 
 
-      - 
+  
 
       
     
@@ -222,7 +222,7 @@ for:
       
 
       # Install Aria2 "For Fast download"
-      - brew install aria2
+      #- brew install aria2
 
       # Install XCode (ex. Xcode 13 Beta 5)
       #- xcodes install 14.3 ya tiene por default el 14.1
