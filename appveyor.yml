@@ -173,7 +173,16 @@ for:
 
       - toolchain build python3 
 
-      - export SERIOUS_PYTHON_IOS_DIST=/Users/appveyor/projects/quitadondo/dist
+      # Obtener el directorio completo de dist
+      - REALPATH=$(realpath dist)
+
+      # Asignar el valor a una variable global
+      - export REALPATH
+
+      # Mostrar el valor para verificar
+      - echo "REALPATH: $REALPATH"
+
+      - export SERIOUS_PYTHON_IOS_DIST="$REALPATH"
 
 
 
