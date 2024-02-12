@@ -238,23 +238,23 @@ for:
       #dice que para que runtimes funcione hay que hacer esto
       #- brew remove xcodes
       #- brew untap robotsandpenciles/made
-      - brew install xcodesorg/made/xcodes
+      #- brew install xcodesorg/made/xcodes
 
       # list available xcode versions
-      - xcodes list
+      #- xcodes list
 
       # Update available xcode versions
-      - xcodes update
+      #- xcodes update
 
-      - xcodes select 13.4.1
+      #- xcodes select 13.4.1
 
-      - xcodes runtimes --include-betas
+      #- xcodes runtimes --include-betas
 
-      - xcodes runtimes install "iOS 17.0-beta1"
+      #- xcodes runtimes install "iOS 17.0-beta1"
 
-      - sudo gem install xcode-install
+      #- sudo gem install xcode-install
 
-      - xcversion simulators
+      #- xcversion simulators
 
       #- xcversion simulators --install="iOS 14.4 Simulator"
 
