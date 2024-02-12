@@ -153,7 +153,7 @@ for:
       ### Edit .zshrc & add this line before source $ZSH/oh-my-zsh.sh
       #### fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-history-substring-search/src
 
-      - brew install subversion
+      #- brew install subversion
 
       - brew install repo
 
