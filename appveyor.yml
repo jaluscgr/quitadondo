@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for iOS
       job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-catalina
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-bigsur
 
     - job_name: Build app for Android
       job_group: build_app_android
