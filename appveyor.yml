@@ -100,7 +100,7 @@ for:
       - export PATH="$PATH:/Users/appveyor/.gem/ruby/3.1.0/bin"
 
       #nstalar xcode select line tools
-      - xcode-select --install
+      #- xcode-select --install
 
       #instalar roseta
       - /usr/sbin/softwareupdate --install-rosetta --agree-to-license
