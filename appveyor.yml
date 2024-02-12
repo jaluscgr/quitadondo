@@ -226,7 +226,7 @@ for:
 
       # Install XCode (ex. Xcode 13 Beta 5)
       #- xcodes install 14.3 ya tiene por default el 14.1
-      - sudo xcode-select -s /Applications/Xcode-14.3.app
+      - sudo xcode-select -s /Applications/Xcode-13.4.1.app
 
 
       #- export XCODES_USERNAME="<your_email>"
