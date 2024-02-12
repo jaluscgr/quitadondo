@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for iOS
       job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-catalina
 
     - job_name: Build app for Android
       job_group: build_app_android
@@ -173,16 +173,8 @@ for:
 
       - toolchain build python3 
 
-      # Obtener el directorio completo de dist
-      - REALPATH=$(realpath dist)
-
-      # Asignar el valor a una variable global
-      - export REALPATH
-
-      # Mostrar el valor para verificar
-      - echo "REALPATH: $REALPATH"
-
-      - export SERIOUS_PYTHON_IOS_DIST="$REALPATH"
+      
+      - export SERIOUS_PYTHON_IOS_DIST="/Users/appveyor/projects/quitadondo/dist/"
 
 
 
