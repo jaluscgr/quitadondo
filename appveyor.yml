@@ -95,7 +95,7 @@ for:
       - export PATH="$PATH:$HOME/.local/bin"
 
         # Agregar el directorio bin de python3 al PATH
-      - export PATH="$PATH:$(python3 -m site --user-base)/bin"
+      #- export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
       - export PATH="$PATH:/Users/appveyor/.gem/ruby/3.1.0/bin"
 
@@ -165,8 +165,8 @@ for:
 
       #usar python ios 
 
-      - brew install python@3.10
-      - export PATH="$PATH:$(python3.10 -m site --user-base)/bin"
+      - brew install python@3.11.6
+      - export PATH="$PATH:$(python3.11.6 -m site --user-base)/bin"
 
       - python3 -m venv .venv
       - source .venv/bin/activate
