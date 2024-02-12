@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for iOS
       job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-catalina
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
 
     - job_name: Build app for Android
       job_group: build_app_android
@@ -99,11 +99,90 @@ for:
 
       - export PATH="$PATH:/Users/appveyor/.gem/ruby/3.1.0/bin"
 
+      #nstalar xcode select line tools
+      - xcode-select --install
+
+      #instalar roseta
+      - /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+
 
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
+      #instalar homebrew
+       ## Install Brew
+      #- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      #- /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall.sh)"
+
+      #- HBP=`brew --prefix`
+      #- export PATH=$HBP/bin:$PATH
+
+      - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      - alias brew="arch -arm64 brew" # M2 x86_64
+
+      - alias brew="arch -x86_64 brew"
+
+      - brew install --cask iterm2
+
+      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+      - ## Install Power10k :
+      - git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+      ### change ZSH_THEME to : ZSH_THEME="powerlevel10k/powerlevel10k"
+      ### then run :
+      - p10k configure
+
+      ## Install Auto-Suggestion :
+      - git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+      ### Edit .zshrc & add in plugins array : zsh-autosuggestions
+
+      ## Install Syntaxe Hylight :
+      - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+      ### Edit .zshrc & add in plugins array : zsh-syntax-highlighting
+
+      ## Install Completion : 
+      - git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+      ### Edit .zshrc & add this line before source $ZSH/oh-my-zsh.sh
+      #### fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+      ## Install History substring :
+      - git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+      ### Edit .zshrc & add this line before source $ZSH/oh-my-zsh.sh
+      #### fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-history-substring-search/src
+
+      - brew install subversion
+
+      - brew install repo
+
+      - brew install git
+      - brew install git-lfs
+
+      - brew install git-flow
+
+      - brew install --cask sublime-text
+
+      - brew install --cask fork
+
+      - brew install --cask virtualbox
+
+      - brew install docker
+
+      - brew install --cask kitematic
+
+      - brew install --cask openinterminal
       
+      - brew install --cask spectacle
+
+      - brew install --cask dozer
+
+      - brew install --cask db-browser-for-sqlite
+
+      - brew install --cask proxyman
+
+      - brew install --cask postman
 
 
       #- brew install cocoapods
@@ -116,6 +195,9 @@ for:
       
       - alias gem="arch -x86_64 sudo gem"
 
+      #instalar ffi
+      - arch -x86_64 sudo gem install ffi
+
       - gem install --user-install ffi -- --enable-libffi-alloc
       #install bundles
       - gem install bundler
@@ -123,6 +205,14 @@ for:
       - sudo gem install cocoapods -n /usr/local/bin
 
       - alias pod="arch -arm64 pod"
+
+      - gem install bundler
+
+      - sudo gem install cocoapods -n /usr/local/bin
+
+      - alias pod="arch -arm64 pod" 
+
+      - 
 
       
     
@@ -132,10 +222,12 @@ for:
       
 
       # Install Aria2 "For Fast download"
-      #- brew install aria2
+      - brew install aria2
 
       # Install XCode (ex. Xcode 13 Beta 5)
       #- xcodes install 14.3 ya tiene por default el 14.1
+      - sudo xcode-select -s /Applications/Xcode-14.3.app
+
 
       #- export XCODES_USERNAME="<your_email>"
       #- export XCODES_PASSWORD="<your_pass>"
@@ -146,27 +238,45 @@ for:
       #dice que para que runtimes funcione hay que hacer esto
       #- brew remove xcodes
       #- brew untap robotsandpenciles/made
-      #- brew install xcodesorg/made/xcodes
+      - brew install xcodesorg/made/xcodes
 
       # list available xcode versions
-      #- xcodes list
+      - xcodes list
 
       # Update available xcode versions
-      #- xcodes update
+      - xcodes update
 
-      #- xcodes select 13.4.1
+      - xcodes select 13.4.1
 
-      #- xcodes runtimes --include-betas
+      - xcodes runtimes --include-betas
 
-      #- xcodes runtimes install "iOS 17.0-beta1"
+      - xcodes runtimes install "iOS 17.0-beta1"
 
       - sudo gem install xcode-install
+
+      - xcversion simulators
+
+      - xcversion simulators --install="iOS 14.4 Simulator"
+
+      - xcrun simctl list
+
+      - alias sim="/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID"
+
+      - sim D9C60396-FC76-4693-AEE2-84AA7C8EB200
+
+      - open -a Simulator
+      - gem install fastlane -NV
+      - bundle update
+      - bundle install
+      - bundle exec fastlane ...
+
+      - sudo chown -R $(whoami) /Users/$(whoami)/.gem
 
 
       #usar python ios 
 
-      - brew install python@3.9
-      - export PATH="$PATH:$(python3.9 -m site --user-base)/bin"
+      - brew install python@3.11
+      - export PATH="$PATH:$(python3.11 -m site --user-base)/bin"
 
       - python3 -m venv .venv
       - source .venv/bin/activate
