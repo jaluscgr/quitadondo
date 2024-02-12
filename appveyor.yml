@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for iOS
       job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-bigsur
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-catalina
 
     - job_name: Build app for Android
       job_group: build_app_android
@@ -100,7 +100,7 @@ for:
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
-      - brew install cocoapods
+      #- brew install cocoapods
 
       # install ruby 
       #- curl -L https://get.rvm.io | bash -s stable
@@ -114,7 +114,7 @@ for:
       #install bundles
       - gem install bundler
       #install cocoapods
-      #- sudo gem install cocoapods -n /usr/local/bin
+      - sudo gem install cocoapods -n /usr/local/bin
 
       - alias pod="arch -arm64 pod"
 
@@ -159,8 +159,8 @@ for:
 
       #usar python ios 
 
-      #- python3 -m venv .venv
-      #- source .venv/bin/activate
+      - python3 -m venv .venv
+      - source .venv/bin/activate
 
       - pip3 install flet
 
