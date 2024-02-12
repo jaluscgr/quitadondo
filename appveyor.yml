@@ -18,7 +18,7 @@ environment:
 
     - job_name: Build app for iOS
       job_group: build_app_darwin
-      APPVEYOR_BUILD_WORKER_IMAGE: macos-monterey
+      APPVEYOR_BUILD_WORKER_IMAGE: macos-catalina
 
     - job_name: Build app for Android
       job_group: build_app_android
@@ -226,7 +226,7 @@ for:
 
       # Install XCode (ex. Xcode 13 Beta 5)
       #- xcodes install 14.3 ya tiene por default el 14.1
-      - sudo xcode-select -s /Applications/Xcode-13.4.1.app
+      #- sudo xcode-select -s /Applications/Xcode-13.4.1.app
 
 
       #- export XCODES_USERNAME="<your_email>"
@@ -256,15 +256,15 @@ for:
 
       - xcversion simulators
 
-      - xcversion simulators --install="iOS 14.4 Simulator"
+      #- xcversion simulators --install="iOS 14.4 Simulator"
 
-      - xcrun simctl list
+      #- xcrun simctl list
 
-      - alias sim="/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID"
+      #- alias sim="/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID"
 
-      - sim D9C60396-FC76-4693-AEE2-84AA7C8EB200
+      #- sim D9C60396-FC76-4693-AEE2-84AA7C8EB200
 
-      - open -a Simulator
+      #- open -a Simulator
       - gem install fastlane -NV
       - bundle update
       - bundle install
@@ -275,7 +275,7 @@ for:
 
       #usar python ios 
 
-      - brew install python@3.11
+      #- brew install python@3.11
       - export PATH="$PATH:$(python3.11 -m site --user-base)/bin"
 
       - python3 -m venv .venv
