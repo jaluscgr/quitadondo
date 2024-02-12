@@ -97,6 +97,9 @@ for:
         # Agregar el directorio bin de python3 al PATH
       - export PATH="$PATH:$(python3 -m site --user-base)/bin"
 
+      - export PATH="$PATH:/Users/appveyor/.gem/ruby/3.1.0/bin"
+
+
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
@@ -122,7 +125,7 @@ for:
     
 
       #instalar xcode
-      - brew install robotsandpencils/made/xcodes
+      #- brew install robotsandpencils/made/xcodes
       
 
       # Install Aria2 "For Fast download"
@@ -138,7 +141,7 @@ for:
       #install runtimes
 
       #dice que para que runtimes funcione hay que hacer esto
-      - brew remove xcodes
+      #- brew remove xcodes
       #- brew untap robotsandpenciles/made
       - brew install xcodesorg/made/xcodes
 
