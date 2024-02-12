@@ -103,7 +103,7 @@ for:
       #- xcode-select --install
 
       #instalar roseta
-      - /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      #- /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
 
         # Añadir la clave GPG de Eclipse Adoptium
