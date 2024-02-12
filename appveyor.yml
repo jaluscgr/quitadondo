@@ -103,6 +103,9 @@ for:
         # Añadir la clave GPG de Eclipse Adoptium
       - brew tap homebrew/cask-versions
 
+      
+
+
       #- brew install cocoapods
 
       # install ruby 
@@ -162,8 +165,11 @@ for:
 
       #usar python ios 
 
-      #- python3 -m venv .venv
-      #- source .venv/bin/activate
+      - brew install python@3.10
+      - export PATH="$PATH:$(python3.10 -m site --user-base)/bin"
+
+      - python3 -m venv .venv
+      - source .venv/bin/activate
 
       - pip3 install flet
 
