@@ -146,14 +146,14 @@ for:
       - brew install xcodesorg/made/xcodes
 
       # list available xcode versions
-      - xcodes list
+      #- xcodes list
 
       # Update available xcode versions
-      - xcodes update
+      #- xcodes update
 
       #- xcodes select 13.4.1
 
-      - xcodes runtimes --include-betas
+      #- xcodes runtimes --include-betas
 
       #- xcodes runtimes install "iOS 17.0-beta1"
 
