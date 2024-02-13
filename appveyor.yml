@@ -276,9 +276,9 @@ for:
       #usar python ios 
 
       #- brew install python@3.11
-      - export PATH="$PATH:$(python3.10 -m site --user-base)/bin"
+      - export PATH="$PATH:$(python3.10.8 -m site --user-base)/bin"
 
-      - python3.10 -m venv .venv
+      - python3.10.8 -m venv .venv
       - source .venv/bin/activate
 
       - pip install flet
