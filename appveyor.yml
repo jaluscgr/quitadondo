@@ -275,6 +275,11 @@ for:
 
       #usar python ios 
 
+      pip3 list
+
+      pip list
+
+
       #- brew install python@3.10
       - export PATH="$PATH:$(python3.10 -m site --user-base)/bin"
   
