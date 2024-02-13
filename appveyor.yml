@@ -275,9 +275,9 @@ for:
 
       #usar python ios 
 
-      pip3 list
+      - pip3 list
 
-      pip list
+      - pip list
 
 
       #- brew install python@3.10
