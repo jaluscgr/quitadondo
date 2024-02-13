@@ -279,12 +279,14 @@ for:
 
       - pip list
 
+      - ls /usr/local/bin
+
 
       #- brew install python@3.10
-      - export PATH="$PATH:$(python3.11 -m site --user-base)/bin"
+      - export PATH="$PATH:/usr/local/bin/python3.10"
   
 
-      - python3.11 -m venv .venv
+      - python3.10 -m venv .venv
       - source .venv/bin/activate
 
       - pip3 install flet
