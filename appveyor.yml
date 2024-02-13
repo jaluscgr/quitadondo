@@ -276,18 +276,10 @@ for:
       #usar python ios 
 
       #- brew install python@3.11
-      #- export PATH="$PATH:$(python3.10.8 -m site --user-base)/bin"
-      - gem install pyenv
-      - echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
-      - echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
-      - echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-      - source ~/.bashrc
-      - pyenv install 3.10.8
-      - pyenv global 3.10.8
-      
+      - export PATH="$PATH:$(python3.10.8 -m site --user-base)/bin"
+  
 
-
-      - python -m venv .venv
+      - python3.10 -m venv .venv
       - source .venv/bin/activate
 
       - pip install flet
