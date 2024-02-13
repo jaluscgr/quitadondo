@@ -105,10 +105,10 @@ for:
       #instalar roseta
       #- /usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
-      - brew install python@3.10
+      
 
         # Añadir la clave GPG de Eclipse Adoptium
-      - brew tap homebrew/cask-versions
+      #- brew tap homebrew/cask-versions
 
       #instalar homebrew
        ## Install Brew
@@ -275,6 +275,8 @@ for:
 
 
       #usar python ios 
+
+      - brew install python@3.10
 
       - pip3 list
 
