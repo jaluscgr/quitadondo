@@ -208,7 +208,7 @@ for:
 
       - gem install bundler
 
-      - sudo gem install cocoapods -n /usr/local/bin
+      #- sudo gem install cocoapods -n /usr/local/bin
 
       - alias pod="arch -arm64 pod" 
 
@@ -276,9 +276,18 @@ for:
       #usar python ios 
 
       #- brew install python@3.11
-      - export PATH="$PATH:$(python3.10.8 -m site --user-base)/bin"
+      #- export PATH="$PATH:$(python3.10.8 -m site --user-base)/bin"
+      - gem install pyenv
+      - echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+      - echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+      - echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+      - source ~/.bashrc
+      - pyenv install 3.10.8
+      - pyenv global 3.10.8
+      
 
-      - python3.10.8 -m venv .venv
+
+      - python -m venv .venv
       - source .venv/bin/activate
 
       - pip install flet
