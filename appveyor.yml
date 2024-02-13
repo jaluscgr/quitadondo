@@ -283,8 +283,24 @@ for:
 
 
       #- brew install python@3.10
-      - export PATH="$PATH:/usr/local/bin/python3.10"
-  
+      #- export PATH="$PATH:/usr/local/bin/python3.10"
+
+      # Instalar Pyenv
+      - gem install pyenv
+
+      # Agregar la inicialización de Pyenv a tu archivo de perfil
+      - echo 'eval "$(pyenv init --path)"' >> ~/.bash_profile
+      - echo 'eval "$(pyenv init --path)"' >> ~/.zshrc  # Si estás usando Zsh en lugar de Bash
+
+      # Cerrar y volver a abrir la terminal o ejecutar el siguiente comando
+      - source ~/.bash_profile
+      - source ~/.zshrc  # Si estás usando Zsh en lugar de Bash
+
+      # Instalar Python 3.10 con Pyenv
+      - pyenv install 3.10.0
+
+      - ls /usr/local/bin
+
 
       - python3.10 -m venv .venv
       - source .venv/bin/activate
