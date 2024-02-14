@@ -280,25 +280,25 @@ for:
 
       #- brew unlink $(brew list | grep python@3)
 
-      - brew install python@3.10
+      #- brew install python@3.10
 
       - pip3 list
 
       - pip list
 
-      - ls /usr/local/bin
-      - ls /usr/local/Cellar/python@3.10
+      #- ls /usr/local/bin
+      #- ls /usr/local/Cellar/python@3.10
 
 
       
-      - export PATH="$PATH:/usr/local/Cellar/python@3.10"
+      - export PATH="$PATH:/usr/local/Cellar/python@3.11"
 
       
 
       - ls /usr/local/bin
 
 
-      - python3.10 -m venv .venv
+      - python3.11 -m venv .venv
       - source .venv/bin/activate
 
       - pip3 install flet
