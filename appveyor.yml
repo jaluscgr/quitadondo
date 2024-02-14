@@ -276,7 +276,7 @@ for:
 
       #usar python ios 
 
-      - brew install python@3.10
+      - brew install python@3.11.6
 
       - pip3 list
 
@@ -286,14 +286,14 @@ for:
 
 
       
-      - export PATH="$PATH:/usr/local/bin/python3.10"
+      - export PATH="$PATH:/usr/local/bin/python3.11.6"
 
       
 
       - ls /usr/local/bin
 
 
-      - python3.10 -m venv .venv
+      - python3.11.6 -m venv .venv
       - source .venv/bin/activate
 
       - pip3 install flet
