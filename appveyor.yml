@@ -276,7 +276,11 @@ for:
 
       #usar python ios 
 
-      - brew install python@3.11.6
+      # - brew unlink --force $(brew list | grep python@3)
+
+      - brew unlink --force $(brew list | grep python@3)
+
+      - brew install python@3.11
 
       - pip3 list
 
@@ -286,14 +290,14 @@ for:
 
 
       
-      - export PATH="$PATH:/usr/local/bin/python3.11.6"
+      - export PATH="$PATH:/usr/local/bin/python3.11"
 
       
 
       - ls /usr/local/bin
 
 
-      - python3.11.6 -m venv .venv
+      - python3.11 -m venv .venv
       - source .venv/bin/activate
 
       - pip3 install flet
