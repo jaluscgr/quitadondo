@@ -125,7 +125,7 @@ for:
 
       - alias brew="arch -x86_64 brew"
 
-      - brew install --cask iterm2
+      #- brew install --cask iterm2
 
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -156,7 +156,7 @@ for:
 
       #- brew install subversion
 
-      - brew install repo
+      
 
       #- brew install git
       #- brew install git-lfs
@@ -278,19 +278,20 @@ for:
 
       # - brew unlink --force $(brew list | grep python@3)
 
-      - brew unlink $(brew list | grep python@3)
+      #- brew unlink $(brew list | grep python@3)
 
-      - brew install python@3.11
+      #- brew install python@3.11
 
       - pip3 list
 
       - pip list
 
       - ls /usr/local/bin
+      - ls /usr/local/Cellar/python@3.11
 
 
       
-      - export PATH="$PATH:/usr/local/bin/python3.11"
+      - export PATH="$PATH:/usr/local/Cellar/python@3.11"
 
       
 
