@@ -119,7 +119,7 @@ for:
       #- HBP=`brew --prefix`
       #- export PATH=$HBP/bin:$PATH
 
-      - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     # - arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
       - alias brew="arch -arm64 brew" # M2 x86_64
 
@@ -278,7 +278,7 @@ for:
 
       # - brew unlink --force $(brew list | grep python@3)
 
-      - brew unlink --force $(brew list | grep python@3)
+      - brew unlink $(brew list | grep python@3)
 
       - brew install python@3.11
 
