@@ -159,7 +159,7 @@ jobs:
     
     
     - name: Archive webapp
-      run: zip -r quitadondo-web.zip ./build/web/
+      run: zip -r quitadondo-web-hash.zip ./build/web/
         
     - name: Upload APK to GitHub Release
       run: gh release upload ${{ github.event.release.tag_name }} quitadondo-web.zip
